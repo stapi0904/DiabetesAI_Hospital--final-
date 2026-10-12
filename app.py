@@ -373,12 +373,13 @@ def show_footer():
 
 @st.cache_resource
 def load_bundle():
-    return joblib.load(MODEL_PATH)
+    model_path = hf_hub_download(
+        repo_id="stephy0904/diabetesai-model",
+        filename="diabetes_model.pkl",
+        token=st.secrets["HF_TOKEN"]
+    )
+    return joblib.load(model_path)
 
-
-if not MODEL_PATH.exists():
-    st.error("Model not found. Please run train_model.py first.")
-    st.stop()
 
 try:
     bundle = load_bundle()
