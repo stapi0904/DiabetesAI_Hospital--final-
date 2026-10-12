@@ -387,7 +387,7 @@ try:
 
 except Exception as error:
     st.error("Could not load the trained model.")
-    st.code(str(error))
+    st.exception(error)
     st.stop()
 
 
